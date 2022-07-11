@@ -1,4 +1,5 @@
 const DEFAULT_ENV_VARIABLE_NAME = "GITHUB_SHA";
+const DEFAULT_HASH_BYTE_LENGTH = 4;
 
 const htmlspecialchars = (str) => {
   return str
@@ -23,11 +24,17 @@ module.exports = {
       return page;
     },
     config: function (config) {
+      const pluginConfig = config.pluginsConfig["github-sha"];
       const environmentVariableName =
-        config.pluginsConfig["github-sha"].environmentVariableName ||
-        DEFAULT_ENV_VARIABLE_NAME;
+        pluginConfig.environmentVariableName || DEFAULT_ENV_VARIABLE_NAME;
+      const hashByteLength =
+        pluginConfig.hashByteLength || DEFAULT_HASH_BYTE_LENGTH;
+
       GITHUB_SHA = htmlspecialchars(
-        (process.env[environmentVariableName] || "").slice(0, 8)
+        (process.env[environmentVariableName] || "").slice(
+          0,
+          2 * hashByteLength
+        )
       );
       return config;
     },
