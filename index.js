@@ -1,3 +1,5 @@
+const DEFAULT_ENV_VARIABLE_NAME = "GITHUB_SHA";
+
 const htmlspecialchars = (str) => {
   return str
     .replace(/&/g, "&amp;")
@@ -7,7 +9,7 @@ const htmlspecialchars = (str) => {
     .replace(/'/g, "&#39;");
 };
 
-const GITHUB_SHA = htmlspecialchars((process.env.GITHUB_SHA || "").slice(0, 8));
+let GITHUB_SHA = "";
 
 module.exports = {
   website: {
@@ -19,6 +21,15 @@ module.exports = {
       page.content =
         `<template id="github_sha">${GITHUB_SHA}</template>` + page.content;
       return page;
+    },
+    config: function (config) {
+      const environmentVariableName =
+        config.pluginsConfig["github-sha"].environmentVariableName ||
+        DEFAULT_ENV_VARIABLE_NAME;
+      GITHUB_SHA = htmlspecialchars(
+        (process.env[environmentVariableName] || "").slice(0, 8)
+      );
+      return config;
     },
   },
 };
