@@ -1,5 +1,5 @@
 # honkit-plugin-github-sha
-As in GitHub, add a commit hash to the URL by pressing the `Y` key.
+As in GitHub, append a commit hash to the URL by pressing the `Y` key.
 
 ## Requirement
 - HonKit

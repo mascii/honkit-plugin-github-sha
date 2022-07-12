@@ -1,7 +1,7 @@
 {
   "name": "honkit-plugin-github-sha",
   "version": "0.1.2",
-  "description": "As in GitHub, add a commit hash to the URL by pressing the \"Y\" key.",
+  "description": "As in GitHub, append a commit hash to the URL by pressing the \"Y\" key.",
   "main": "index.js",
   "author": "mascii<mascii@gmail.com>",
   "license": "MIT",
