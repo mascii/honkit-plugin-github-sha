@@ -19,8 +19,7 @@ module.exports = {
   },
   hooks: {
     page: function (page) {
-      page.content =
-        `<template id="github_sha">${GITHUB_SHA}</template>` + page.content;
+      page.content = `<template id="github_sha">${GITHUB_SHA}</template>${page.content}`;
       return page;
     },
     config: function (config) {
